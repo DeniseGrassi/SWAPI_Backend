@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request
-
 from .swapi_client import fetch_from_swapi
 from .service import apply_filters, apply_sort, apply_pagination
 
@@ -33,7 +32,7 @@ def swapi_proxy():
     if not resource:
         return jsonify({"error": "resource parameter is required"}), 400
 
-    filters = {k: v for k, v in request.args.items() if k not in _RESERVED and v is not None}
+    filters = {k: v for k, v in request.args.items() if k not in _RESERVED and v}
 
     params = {}
     if query:
@@ -43,6 +42,8 @@ def swapi_proxy():
         data = fetch_from_swapi(resource, params)
     except Exception:
         return jsonify({"error": "failed to fetch data from swapi"}), 502
+    
+    cache_status = data.pop("_cache", None)
 
     results = data.get("results", [])
     if not isinstance(results, list):
@@ -61,4 +62,7 @@ def swapi_proxy():
         "meta": meta,
         "results": paged,
     }
-    return jsonify(response), 200
+    resp = jsonify(response)
+    if cache_status:
+        resp.headers["X-Cache"] = str(cache_status).upper()
+    return resp, 200
