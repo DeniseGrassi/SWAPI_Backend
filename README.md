@@ -62,3 +62,19 @@ pytest
 
 ### Observações
 As decisões técnicas e limitações conhecidas estão documentadas em docs/DECISIONS.md.
+
+## Autenticação (API Key)
+
+O endpoint `/v1/swapi` possui um controle simples de acesso baseado em API Key.
+
+### Como configurar
+
+Defina a variável de ambiente antes de iniciar a aplicação:
+
+## Linux / Mac:
+export API_KEY="minha-chave-local"
+FLASK_APP=src.app flask run --port 8080
+
+## Windows (PowerShell):
+$env:API_KEY="minha-chave-local"
+flask run --port 8080

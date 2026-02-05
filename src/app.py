@@ -1,10 +1,24 @@
 from flask import Flask, jsonify, request
 from .swapi_client import fetch_from_swapi
 from .service import apply_filters, apply_sort, apply_pagination
+import os
 
 app = Flask(__name__)
 
 _RESERVED = {"resource", "q", "sort", "order", "page", "page_size"}
+API_KEY = os.getenv("API_KEY")
+
+def _check_api_key():
+    api_key = os.getenv("API_KEY")
+    if not api_key:
+        return None
+
+    key = request.headers.get("X-API-Key")
+    if key != api_key:
+        return jsonify({"error": "unauthorized"}), 401
+
+    return None
+
 
 
 @app.route("/health", methods=["GET"])
@@ -14,6 +28,9 @@ def health():
 
 @app.route("/v1/swapi", methods=["GET"])
 def swapi_proxy():
+    auth = _check_api_key()
+    if auth:
+        return auth
     resource = request.args.get("resource")
     query = request.args.get("q")
     sort_field = request.args.get("sort", "").strip()
