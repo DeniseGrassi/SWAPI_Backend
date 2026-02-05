@@ -19,8 +19,6 @@ def _check_api_key():
 
     return None
 
-
-
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok"}), 200

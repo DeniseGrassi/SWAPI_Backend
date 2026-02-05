@@ -1,7 +1,6 @@
 # PowerOfData 
 
-API desenvolvida como parte do desafio técnico para a vaga de Desenvolvedor Back-end Python na POWER DATA TECNOLOGIA ANALITICA LTDA .
-O objetivo da aplicação é fornecer uma interface para consulta de dados da saga Star Wars, utilizando a SWAPI como fonte externa, com suporte a filtros, ordenação, paginação e cache.
+Este projeto foi desenvolvido como parte de um desafio técnico para a vaga de Desenvolvedor Back-end Python na Power Data Tecnologia Analítica Ltda.
 
 ---
 
@@ -15,8 +14,11 @@ O objetivo da aplicação é fornecer uma interface para consulta de dados da sa
 
 ## Como rodar o projeto localmente
 ### 1. Criar e ativar o ambiente virtual
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
 ### 2. Instalar dependências
 pip install -r requirements.txt
@@ -24,17 +26,17 @@ pip install -r requirements.txt
 ### 3. Executar a aplicação
 FLASK_APP=src.app flask run --port 8080
 
-# API ficará disponível em:
+### API ficará disponível em:
 http://127.0.0.1:8080
 
-# Endpoints disponíveis
+### Endpoints disponíveis:
 Health check
 GET /health
 
-# Consulta de dados da SWAPI
+### Consulta de dados da SWAPI:
 GET /v1/swapi
 
-#Parâmetros suportados
+### Parâmetros suportados:
 
 resource (obrigatório): people, planets, films, starships, species, vehicles
 q: termo de busca
@@ -66,7 +68,8 @@ As decisões técnicas e limitações conhecidas estão documentadas em docs/DEC
 ## Autenticação (API Key)
 
 O endpoint `/v1/swapi` possui um controle simples de acesso baseado em API Key.
-Copie o arquivo `.env.example` para `.env` e configure sua chave.
+Copie o arquivo `.env.example` para `.env` e defina o valor da variável `API_KEY`.
+
 
 
 ### Como configurar
@@ -121,3 +124,18 @@ Uma separação futura possível seria dividir a aplicação em:
 - API
 - Cache distribuído
 - Gateway / camada de autenticação
+
+## Evidências de execução
+
+Foram incluídos alguns prints demonstrando o funcionamento da aplicação durante testes locais.  
+Eles podem ser encontrados na pasta `docs/images`.
+
+Os exemplos mostram:
+
+- Health check funcionando
+- Endpoint protegido retornando 401 sem API Key
+- Requisição autorizada com API Key válida
+- Funcionamento do cache (MISS e HIT)
+- Exemplos de filtros, ordenação e paginação
+
+Essas evidências foram adicionadas apenas para facilitar a validação do comportamento da API.

@@ -37,7 +37,6 @@ def apply_filters(items: List[Dict[str, Any]], filters: Dict[str, str]) -> List[
 
         if ok:
             out.append(it)
-
     return out
 
 
@@ -49,7 +48,6 @@ def apply_sort(items: List[Dict[str, Any]], sort_field: str, order: str) -> List
 
     def key_fn(it: Dict[str, Any]):
         val = it.get(sort_field)
-        # Quando não existe o campo, manda pro fim
         if val is None:
             return (1, "")
         

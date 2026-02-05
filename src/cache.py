@@ -1,7 +1,6 @@
 import time
 from typing import Any, Dict, Optional, Tuple
 
-
 class TTLCache:
     def __init__(self, default_ttl_seconds: int = 300):
         self.default_ttl_seconds = default_ttl_seconds
@@ -14,7 +13,6 @@ class TTLCache:
 
         expires_at, value = item
         if expires_at < time.time():
-            # expirou, limpa e retorna vazio
             self._store.pop(key, None)
             return None
 
