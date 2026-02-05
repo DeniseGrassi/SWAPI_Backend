@@ -66,6 +66,8 @@ As decisões técnicas e limitações conhecidas estão documentadas em docs/DEC
 ## Autenticação (API Key)
 
 O endpoint `/v1/swapi` possui um controle simples de acesso baseado em API Key.
+Copie o arquivo `.env.example` para `.env` e configure sua chave.
+
 
 ### Como configurar
 
@@ -75,6 +77,52 @@ Defina a variável de ambiente antes de iniciar a aplicação:
 export API_KEY="minha-chave-local"
 FLASK_APP=src.app flask run --port 8080
 
-## Windows (PowerShell):
+### Windows (PowerShell)
+
+```powershell
 $env:API_KEY="minha-chave-local"
 flask run --port 8080
+```
+
+---
+
+## Considerações para ambiente de produção
+---
+
+## Considerações para ambiente de produção
+
+### Cache
+
+Atualmente o cache é mantido em memória da aplicação.  
+Em um ambiente com múltiplas instâncias isso não seria compartilhado.
+
+Uma evolução natural seria utilizar:
+
+- Redis
+- Memcached
+- Azure Cache for Redis
+- AWS ElastiCache
+
+---
+
+### Deploy
+
+A aplicação poderia ser executada em:
+
+- Containers Docker
+
+Ou utilizando serviços gerenciados como:
+
+- AWS ECS / Fargate
+- Azure App Service
+- Render / Railway / Fly.io
+
+---
+
+### Escalabilidade
+
+Uma separação futura possível seria dividir a aplicação em:
+
+- API
+- Cache distribuído
+- Gateway / camada de autenticação
