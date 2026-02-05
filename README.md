@@ -1,4 +1,4 @@
-# PowerOfData – SWAPI Backend Challenge
+# PowerOfData 
 
 API desenvolvida como parte do desafio técnico para a vaga de Desenvolvedor Back-end Python na POWER DATA TECNOLOGIA ANALITICA LTDA .
 O objetivo da aplicação é fornecer uma interface para consulta de dados da saga Star Wars, utilizando a SWAPI como fonte externa, com suporte a filtros, ordenação, paginação e cache.
