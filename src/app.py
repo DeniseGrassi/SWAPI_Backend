@@ -50,6 +50,10 @@ def swapi_proxy():
         return jsonify({"error": "resource parameter is required"}), 400
 
     filters = {k: v for k, v in request.args.items() if k not in _RESERVED and v}
+   
+# TODO: atualmente os filtros são aplicados de forma genérica para qualquer resource.
+# Em uma evolução futura seria interessante validar quais campos são permitidos
+# para cada tipo de recurso retornado pela SWAPI.
 
     params = {}
     if query:

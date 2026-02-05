@@ -77,16 +77,11 @@ Defina a variável de ambiente antes de iniciar a aplicação:
 export API_KEY="minha-chave-local"
 FLASK_APP=src.app flask run --port 8080
 
-### Windows (PowerShell)
-
+### Windows (PowerShell):
 ```powershell
 $env:API_KEY="minha-chave-local"
 flask run --port 8080
 ```
-
----
-
-## Considerações para ambiente de produção
 ---
 
 ## Considerações para ambiente de produção
