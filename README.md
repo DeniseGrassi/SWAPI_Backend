@@ -1,9 +1,3 @@
-# PowerOfData 
-
-Este projeto foi desenvolvido como parte de um desafio técnico para a vaga de Desenvolvedor Back-end Python na Power Data Tecnologia Analítica Ltda.
-
----
-
 ## Tecnologias usadas
 - Python 3.8
 - Flask
